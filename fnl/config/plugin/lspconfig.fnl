@@ -1,7 +1,8 @@
 (module config.plugin.lspconfig
   {autoload {nvim aniseed.nvim
              lsp lspconfig
-             cmplsp cmp_nvim_lsp}})
+             cmplsp cmp_nvim_lsp
+             keys which-key}})
 
 ;symbols to show for lsp diagnostics
 (vim.fn.sign_define "LspDiagnosticsSignError" {:text ""})
@@ -28,25 +29,34 @@
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
       on_attach (fn [client bufnr]
                   (do
-                    (nvim.buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>ld "<Cmd>lua vim.lsp.buf.declaration()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lt "<cmd>lua vim.lsp.buf.type_definition()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lh "<cmd>lua vim.lsp.buf.signature_help()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>ln "<cmd>lua vim.lsp.buf.rename()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>le "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lq "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lf "<cmd>lua vim.lsp.buf.formatting()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lj "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lk "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" {:noremap true})
-                    ;telescope
-                    (nvim.buf_set_keymap bufnr :n :<leader>la ":lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor())<cr>" {:noremap true})
+                    (keys.register 
+                      { :<leader>l {
+                                    :name :+lsp
+                                    :d ["<Cmd>lua vim.lsp.buf.declaration()<CR>" "declaration"]
+                                    :t ["<cmd>lua vim.lsp.buf.type_definition()<CR>" "definition"]
+                                    :h ["<cmd>lua vim.lsp.buf.signature_help()<CR>" "signature help"]
+                                    :n ["<cmd>lua vim.lsp.buf.rename()<CR>" "rename"]
+                                    :e ["<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" "show line diagnostics"]
+                                    :q ["<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" "set loclist"]
+                                    :f ["<cmd>lua vim.lsp.buf.formatting()<CR>" "formatting"]
+                                    :j ["<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" "goto next"]
+                                    :k ["<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" "goto previous"]
+                                    ;telescope
+                                    :a [":lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor())<cr>" "code actions"]
+                                    :w [":lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>" "workspace diagnostics"]
+                                    :r [":lua require('telescope.builtin').lsp_references()<cr>" "references"]
+                                    :i [":lua require('telescope.builtin').lsp_implementations()<cr>" "implementations"]
+                                    }} 
+                      {:buffer bufnr})
                     (nvim.buf_set_keymap bufnr :v :<leader>la ":lua require('telescope.builtin').lsp_range_code_actions(require('telescope.themes').get_cursor())<cr>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lw ":lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>lr ":lua require('telescope.builtin').lsp_references()<cr>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :<leader>li ":lua require('telescope.builtin').lsp_implementations()<cr>" {:noremap true})))]
+                    (nvim.buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
+                    (nvim.buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})))]
 
-  ;; Clojure
+  ; Clojure
   (lsp.clojure_lsp.setup {:on_attach on_attach
                           :handlers handlers
-                          :capabilities capabilities}))
+                          :capabilities capabilities})
+
+  ; TypeScript
+  (lsp.tsserver.setup)
+  )
