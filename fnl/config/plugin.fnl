@@ -62,5 +62,14 @@
 
   ; airline
   :vim-airline/vim-airline {}
+
+  ; Git & Git graph
+  :tpope/vim-fugitive {}
+  :junegunn/gv.vim {}
+
+  ; Debugger Adapter Protocol
+  :mfussenegger/nvim-dap {:mod :debugger}
+  :theHamsta/nvim-dap-virtual-text {:requires [:mfussenegger/nvim-dap :nvim-treesitter/nvim-treesitter]
+                                    :run ":TSUpdate"}
   )
 

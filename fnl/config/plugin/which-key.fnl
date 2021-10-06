@@ -1,5 +1,5 @@
 (module config.plugin.which-key
   {autoload {nvim aniseed.nvim
-             wk which-key}})
+             keys which-key}})
 
-(wk.setup)
+(keys.setup)
