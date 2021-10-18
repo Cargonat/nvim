@@ -66,6 +66,7 @@
   ; Git & Git graph
   :tpope/vim-fugitive {:mod :git}
   :junegunn/gv.vim {}
+  :airblade/vim-gitgutter {}
 
   ; Debugger Adapter Protocol
   :mfussenegger/nvim-dap {:mod :debugger}
@@ -78,5 +79,12 @@
 
   ; colorizer
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
+
+  ; NERDTree
+  :scrooloose/nerdtree {:mod :nerdtree}
+  :Xuyuanp/nerdtree-git-plugin {:requires :scrooloose/nerdtree}
+
+  ; surround
+  :tpope/vim-surround {}
   )
 

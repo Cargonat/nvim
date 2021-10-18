@@ -1,7 +1,5 @@
 (module config.plugin.git
-  {autoload {nvim aniseed.nvim
-             git git
-             keys which-key}})
+  {autoload {keys which-key}})
 
 (keys.register
   { :<leader>g {
