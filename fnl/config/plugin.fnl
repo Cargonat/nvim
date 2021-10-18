@@ -64,12 +64,19 @@
   :vim-airline/vim-airline {}
 
   ; Git & Git graph
-  :tpope/vim-fugitive {}
+  :tpope/vim-fugitive {:mod :git}
   :junegunn/gv.vim {}
 
   ; Debugger Adapter Protocol
   :mfussenegger/nvim-dap {:mod :debugger}
   :theHamsta/nvim-dap-virtual-text {:requires [:mfussenegger/nvim-dap :nvim-treesitter/nvim-treesitter]
                                     :run ":TSUpdate"}
+
+  ; scala ls
+  :scalameta/nvim-metals {:requires :nvim-lua/plenary.nvim
+                          :mod :scala}
+
+  ; colorizer
+  :norcalli/nvim-colorizer.lua {:mod :colorizer}
   )
 

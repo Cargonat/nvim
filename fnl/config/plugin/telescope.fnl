@@ -8,7 +8,7 @@
 
 (keys.register
   { :<leader>f {
-                :name :+file
+                :name :+find
                 :f [":lua require('telescope.builtin').find_files()<CR>" "find files"]
                 :g [":lua require('telescope.builtin').live_grep()<CR>" "grep"]
                 :b [":lua require('telescope.builtin').buffers()<CR>" "find buffers"]
