@@ -1,8 +1,8 @@
 (module config.plugin
-  {autoload {nvim aniseed.nvim
-             a aniseed.core
-             util config.util
-             packer packer}})
+        {autoload {nvim aniseed.nvim
+                   a aniseed.core
+                   util config.util
+                   packer packer}})
 
 (defn- safe-require-plugin-config [name]
   (let [(ok? val-or-err) (pcall require (.. :config.plugin. name))]
@@ -53,7 +53,7 @@
 
   ; theme
   :projekt0n/github-nvim-theme {:mod :theme}
-  
+
   ; which-key
   :folke/which-key.nvim {:mod :which-key}
 
@@ -86,5 +86,14 @@
 
   ; surround
   :tpope/vim-surround {}
+
+  ; vim-sneak
+  :justinmk/vim-sneak {}
+
+  ; hop
+  :phaazon/hop.nvim {:mod :hop}
+
+  ; clipboard / registers
+  :AckslD/nvim-neoclip.lua {:mod :neoclip}
   )
 

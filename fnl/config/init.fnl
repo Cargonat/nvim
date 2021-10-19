@@ -42,6 +42,9 @@
   (each [option value (pairs options)]
     (core.assoc nvim.o option value)))
 
+; highlighted yank
+(vim.api.nvim_command "au TextYankPost * silent! lua vim.highlight.on_yank {higroup=\"IncSearch\", timeout=500}")
+
 ; import plugin.fnl
 (require :config.plugin)
 
