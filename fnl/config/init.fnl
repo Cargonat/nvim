@@ -38,6 +38,9 @@
                :textwidth 80
 
                :timeoutlen 500
+
+               ; scroll of the bottom
+               :scrolloff 5
                }]
   (each [option value (pairs options)]
     (core.assoc nvim.o option value)))
