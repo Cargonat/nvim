@@ -10,16 +10,8 @@ Things you need installed in your OS to use this setup
 
 ## How to use
 
-**Make sure you backup your current configuration files in `$HOME/.config/nvim` BEFORE running this.**  
+**Make sure you backup your current configuration files in `$HOME/.config/nvim` (Linux) or `%AppData%/Local/nvim` BEFORE running this.**  
 
-Run these commands in the root of this repo:
-```bash
-# Delete the current nvim config
-rm -rf $HOME/.config/nvim
-
-# Makes a symbolic link to the files in this repo
-ln -sf $PWD/.config/*/ $HOME/.config/
-```
 When you start nvim for the first time it will download packer and aniseed and show some errors, thats normal press enter to ignore and go to the nvim console pressing `:` and type `PackerInstall`.
 This will install all plugins declared in `fnl/config/plugin.fnl`, after packer's panel showing all the plugins where installed, close nvim and open it again, no errors should show up this time.
 
@@ -44,7 +36,7 @@ Wrapper responsible for two things:
 - Set basic global vim configurations and general keymaps.
 - Load plugin configuration namespace.
 
-> In this file among other settings I do set the leader key as `space` and local-leader as `,` for the sake of the examples of how use this configuration I will use this as basis for the commands.
+> In this file among other settings I do set the leader key as `space` and local-leader as `,`.
 
 
 ### [fnl/config/plugin.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin.fnl)
