@@ -43,11 +43,14 @@
                                     :mod :treesitter}
 
   ; lsp
-  :neovim/nvim-lspconfig {:mod :lspconfig}
+  :neovim/nvim-lspconfig {:mod :lspconfig 
+                          :requires :williamboman/nvim-lsp-installer} ; requirement for this setup, not in general
 
   ; autocomplete
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-buffer
                                 :hrsh7th/cmp-nvim-lsp
+                                :hrsh7th/vim-vsnip
+                                :hrsh7th/vim-vsnip-integ
                                 :PaterJason/cmp-conjure]
                      :mod :cmp}
 
@@ -87,13 +90,12 @@
   ; surround
   :tpope/vim-surround {}
 
-  ; vim-sneak
-  :justinmk/vim-sneak {}
+  ; lightspeed (better vim-sneak)
+  :ggandor/lightspeed.nvim {:requires :tpope/vim-repeat}
 
   ; hop
   :phaazon/hop.nvim {:mod :hop}
 
   ; clipboard / registers
   :AckslD/nvim-neoclip.lua {:mod :neoclip}
-  )
-
+)

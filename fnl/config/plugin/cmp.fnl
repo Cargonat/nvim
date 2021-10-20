@@ -13,10 +13,9 @@
    {:name :buffer}])
 
 ;; Setup cmp with desired settings
-(cmp.setup {:formatting
-            {:format (fn [entry item]
-                       (set item.menu (or (. cmp-src-menu-items entry.source.name) ""))
-                       item)}
+(cmp.setup {:formatting {:format (fn [entry item]
+                                   (set item.menu (or (. cmp-src-menu-items entry.source.name) ""))
+                                   item)}
             :mapping {:<C-p> (cmp.mapping.select_prev_item)
                       :<C-n> (cmp.mapping.select_next_item)
                       :<C-d> (cmp.mapping.scroll_docs (- 4))
@@ -25,4 +24,5 @@
                       :<C-e> (cmp.mapping.close)
                       :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Insert
                                                   :select true})}
+            :snippet {:expand (fn [args] ((. vim.fn "vsnip#anonymous") args.body))}
             :sources cmp-srcs})

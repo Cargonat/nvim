@@ -4,11 +4,15 @@
              cmplsp cmp_nvim_lsp
              keys which-key}})
 
+; TODO automatic installation of lsp servers using nvim-lsp-installer
+
 ;symbols to show for lsp diagnostics
 (vim.fn.sign_define "LspDiagnosticsSignError" {:text ""})
 (vim.fn.sign_define "LspDiagnosticsSignWarning" {:text ""})
 (vim.fn.sign_define "LspDiagnosticsSignInformation" {:text ""})
 (vim.fn.sign_define "LspDiagnosticsSignHint" {:text ""})
+
+(keys.register {:<leader>l {:name :+lsp :? [":LspInstallInfo<CR>" "LSP Install Info"]}})
 
 ;server features
 (let [handlers {"textDocument/publishDiagnostics"
@@ -50,13 +54,36 @@
                       {:buffer bufnr})
                     (nvim.buf_set_keymap bufnr :v :<leader>la ":lua require('telescope.builtin').lsp_range_code_actions(require('telescope.themes').get_cursor())<cr>" {:noremap true})
                     (nvim.buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
-                    (nvim.buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})))]
+                    (nvim.buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})))
+      default_options {:on_attach on_attach :handlers handlers :capabilities capabilities}]
 
   ; Clojure
-  (lsp.clojure_lsp.setup {:on_attach on_attach
-                          :handlers handlers
-                          :capabilities capabilities})
+  (lsp.clojure_lsp.setup default_options)
+
+  ; CSS
+  (lsp.cssls.setup default_options)
+
+  ; HTML
+  (lsp.html.setup default_options)
+
+  ; Java
+  (lsp.jdtls.setup default_options) ; probably have to do more config, see lsp-config CONFIG.md
+
+  ; JSON
+  (lsp.jsonls.setup default_options)
+
+  ; LaTeX
+  (lsp.texlab.setup default_options)
+
+  ; Python
+  (lsp.pyright.setup default_options)
+
+  ; TailwindCSS
+  (lsp.tailwindcss.setup default_options)
 
   ; TypeScript
-  (lsp.tsserver.setup)
-  )
+  (lsp.tsserver.setup default_options)
+
+  ; YAML
+  (lsp.yamlls.setup default_options)
+)
