@@ -7,10 +7,10 @@
 ; TODO automatic installation of lsp servers using nvim-lsp-installer
 
 ;symbols to show for lsp diagnostics
-(vim.fn.sign_define "LspDiagnosticsSignError" {:text ""})
-(vim.fn.sign_define "LspDiagnosticsSignWarning" {:text ""})
-(vim.fn.sign_define "LspDiagnosticsSignInformation" {:text ""})
-(vim.fn.sign_define "LspDiagnosticsSignHint" {:text ""})
+(vim.fn.sign_define "LspDiagnosticsSignError" {:text "❌"})
+(vim.fn.sign_define "LspDiagnosticsSignWarning" {:text "❕"})
+(vim.fn.sign_define "LspDiagnosticsSignInformation" {:text "i"})
+(vim.fn.sign_define "LspDiagnosticsSignHint" {:text "h"})
 
 (keys.register {:<leader>l {:name :+lsp :? [":LspInstallInfo<CR>" "LSP Install Info"]}})
 
