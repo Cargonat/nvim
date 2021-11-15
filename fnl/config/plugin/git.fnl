@@ -4,8 +4,8 @@
 (keys.register
   { :<leader>g {
                 :name :+git
-                :v {:name :+visual 
-                    :g [":GV<CR>" "full graph"]
+                :v [":GV<CR>" "visual graph"]
+                :V {:name :+visual 
                     :c [":GV!<CR>" "graph for current file"]
                     :l [":GV?<CR>" "locations for current file"]}
                 :b [":Git blame<CR>" :blame]
