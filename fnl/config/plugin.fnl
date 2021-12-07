@@ -31,7 +31,13 @@
   :Olical/aniseed {:branch :develop}
 
   ; clojure
-  :Olical/conjure {:branch :master :mod :conjure}
+  :Olical/conjure {:branch :master 
+                   :mod :conjure}
+
+  ; Start a REPL from within Vim
+  :tpope/vim-dispatch {}
+  :clojure-vim/vim-jack-in {}
+  :radenling/vim-dispatch-neovim {}
 
   ; file searching
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
@@ -98,4 +104,7 @@
 
   ; clipboard / registers
   :AckslD/nvim-neoclip.lua {:mod :neoclip}
+
+  ; argument text objects
+  :vim-scripts/argtextobj.vim {}
 )
