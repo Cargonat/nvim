@@ -23,6 +23,7 @@
 (nvim.set_keymap :i :<A-k> "<Esc>:m .-2<CR>==gi" {:noremap true})
 (nvim.set_keymap :v :<A-j> "'>+1<CR>gv=gv" {:noremap true})
 (nvim.set_keymap :v :<A-k> "'<-2<CR>gv=gv" {:noremap true})
+(nvim.set_keymap :t :<Esc> "<C-\\><C-n>" {:noremap true})
 
 (keys.register {
                 :<C-j> [":set paste<CR>m`o<Esc>``:set nopaste<CR>" "Insert empty line below"]
