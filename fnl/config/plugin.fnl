@@ -107,4 +107,7 @@
 
   ; argument text objects
   :vim-scripts/argtextobj.vim {}
+
+  ; prettier
+  :prettier/vim-prettier {}
 )
