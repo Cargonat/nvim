@@ -110,4 +110,7 @@
 
   ; prettier
   :prettier/vim-prettier {}
+
+  ; Rainbow CSV
+  :mechatroner/rainbow_csv {}
 )
